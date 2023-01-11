@@ -4,7 +4,7 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/authService";
 
-import { withRouter } from '../common/with-router';
+import { withRouter } from '../common/withRouter';
 import { Component } from "react";
 
 const required = value =>{

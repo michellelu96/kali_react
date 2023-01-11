@@ -1,3 +1,4 @@
+import { Form } from "react-router-dom";
 
 const required = value =>{
     if(!value){
@@ -9,7 +10,7 @@ const required = value =>{
     }
 }
 
-const email = value =>{
+const vEmail = value =>{
     if(!isEmail(value)){
         return(
             <div className="alert alert-danger" role="alert">
@@ -171,6 +172,119 @@ export default class Register extends Component{
     }
 
     render(){
-        
+        return(
+       <div className="col-md-12">
+        <div className="card card-container">
+            <img
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+            alt="profile-img"
+            className="profile img-card"/>
+
+            <Form
+            onSubmit={this.handleRegister}
+            ref={c =>{
+                this.form = c;
+            }}
+            >
+                {!this.state.successful &&(
+                    <div>
+
+                        <div className="form-group">
+                            <label htmlFor="firstName">First Name</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="firstName"
+                                value={this.state.firstName}
+                                onChange={this.onChangeFirstName}
+                                validations={[required,vFirstName]}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="lastName">Last Name</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="lastName"
+                                value={this.state.lastName}
+                                onChange={this.onChangeLastName}
+                                validations={[required,vLastName]}/>
+                        </div>
+
+                        
+                        <div className="form-group">
+                            <label htmlFor="phoneNumber">Phone Number</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="phoneNumber"
+                                value={this.state.phoneNumber}
+                                onChange={this.onChangePhoneNumber}
+                                validations={[required,vPhoneNumber]}/>
+                        </div>
+
+
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.onChangeUsername}
+                                validations={[required,vUsername]}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="email"
+                                value={this.state.email}
+                                onChange={this.onChangeEmail}
+                                validations={[required,vEmail]}/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.onChangePassword}
+                                validations={[required,vPassword]}/>
+                        </div>
+
+                        <div className="form-group">
+                            <button className="btn btn-primary btn-block">Sign Up</button>
+                        </div>
+                    </div> 
+                )}
+
+                {this.state.message &&(
+                    <div className="form-group">
+                        <div
+                        className={
+                            this.state.successful
+                            ? "alert alert-sucessful"
+                            : "alert alert-danger"
+                        }
+                        role="alert">
+                            {this.state.message}
+                        </div>
+                    </div>
+                )}
+                <CheckButton 
+                    style={{display:"none"}}
+                    ref={c =>{
+                        this.checkBtn = c
+                    }}
+                />
+            </Form>
+        </div>
+       </div> 
+       )
     }
 }
