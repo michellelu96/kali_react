@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import UserService from "../services/userService";
 import EventBus from "../common/EventBus";
 
-export default class BoardUser extends Component {
+export default class BoardAdmin extends Component {
   constructor(props) {
     super(props);
 

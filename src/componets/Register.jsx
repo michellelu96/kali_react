@@ -1,4 +1,10 @@
-import { Form } from "react-router-dom";
+import React, { Component } from "react";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
+
+import AuthService from "../services/authService";
 
 const required = value =>{
     if(!value){
@@ -61,7 +67,7 @@ const vLastName = value =>{
 }
 
 const vPhoneNumber = value =>{
-    if(value.length != 10){
+    if(value.length !== 10){
         return(
             <div className="alert alert-danger" role="alert">
                 Phone number must be 10 numbers
