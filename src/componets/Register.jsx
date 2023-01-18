@@ -89,11 +89,11 @@ export default class Register extends Component{
 
         this.state = {
             username:"",
-            email:"",
-            password:"",
             firstName:"",
             lastName:"",
             phoneNumber:"",
+            email:"",
+            password:"",
             successful: false,
             message:""
         }
@@ -162,9 +162,9 @@ export default class Register extends Component{
                 },
                 error => {
                     const resMessage = 
-                    (error.reponse &&
-                        error.reponse.data &&
-                        error.repsonse.data.message) ||
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
                     error.message ||
                     error.toString();
 
@@ -179,8 +179,8 @@ export default class Register extends Component{
 
     render(){
         return(
-       <div className="col-md-12">
-        <div className="card card-container">
+       <div className="col-md-12 d-flex justify-content-center">
+        <div className="card card-container " style={{width: '18rem'}}>
             <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
@@ -194,9 +194,19 @@ export default class Register extends Component{
             >
                 {!this.state.successful &&(
                     <div>
-
                         <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
+                            <label htmlFor="username">Username:</label>
+                            <Input
+                                type="text"
+                                className="form-control"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.onChangeUsername}
+                                validations={[required,vUsername]}/>
+                        </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="firstName">First Name:</label>
                             <Input
                                 type="text"
                                 className="form-control"
@@ -207,7 +217,7 @@ export default class Register extends Component{
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="lastName">Last Name</label>
+                            <label htmlFor="lastName">Last Name:</label>
                             <Input
                                 type="text"
                                 className="form-control"
@@ -216,10 +226,9 @@ export default class Register extends Component{
                                 onChange={this.onChangeLastName}
                                 validations={[required,vLastName]}/>
                         </div>
-
                         
                         <div className="form-group">
-                            <label htmlFor="phoneNumber">Phone Number</label>
+                            <label htmlFor="phoneNumber">Phone Number:</label>
                             <Input
                                 type="text"
                                 className="form-control"
@@ -231,18 +240,7 @@ export default class Register extends Component{
 
 
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
-                            <Input
-                                type="text"
-                                className="form-control"
-                                name="username"
-                                value={this.state.username}
-                                onChange={this.onChangeUsername}
-                                validations={[required,vUsername]}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email:</label>
                             <Input
                                 type="text"
                                 className="form-control"
@@ -253,9 +251,9 @@ export default class Register extends Component{
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password:</label>
                             <Input
-                                type="text"
+                                type="password"
                                 className="form-control"
                                 name="password"
                                 value={this.state.password}
@@ -263,7 +261,7 @@ export default class Register extends Component{
                                 validations={[required,vPassword]}/>
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group d-flex justify-content-center">
                             <button className="btn btn-primary btn-block">Sign Up</button>
                         </div>
                     </div> 

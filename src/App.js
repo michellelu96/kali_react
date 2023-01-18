@@ -1,6 +1,6 @@
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Routes, Route, Link, HashRouter, BrowserRouter} from "react-router-dom";
+import { Routes, Route, BrowserRouter} from "react-router-dom";
 import React, { Component } from "react";
 const axios = require('axios');
 
@@ -64,10 +64,6 @@ class App extends Component {
 
 
         <div className="container mt-3">
-        <BrowserRouter>
-          <div>
-          <Navbar/>
-          
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
@@ -78,9 +74,6 @@ class App extends Component {
               <Route path="/mod" element={<BoardModerator />} />
               <Route path="/admin" element={<BoardAdmin />} /> 
             </Routes>
-            </div>
-          </BrowserRouter>
-
         </div>
     );
   }
