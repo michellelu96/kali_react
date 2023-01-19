@@ -17,7 +17,7 @@ class AuthService {
         });
     }
   
-    logout() {
+    logout() {  
       localStorage.removeItem("user");
     }
   
