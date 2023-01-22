@@ -1,21 +1,21 @@
-import http from "../http-common";
+import http from "../httpCommon";
 
 class CartService{
     getAll(){
         return http.get("/cart");
     }
 
-    addToCart(){
-        return http.post("/cart/add");
+    addToCart(id){
+        return http.post(`/cart/add/${id}`);
     }
 
-    updateItem(id){
-        return http.put("/cart/update/${id}");
+    updateItem(id,data){
+        return http.put(`/cart/update/${id}`,data);
     }
 
     deleteItem(id){
-        return http.delete('/cart/delete/${id}');
+        return http.delete(`cart/delete/${id}`);
     }
 }
 
-export default CartService;
+export default new CartService;

@@ -1,20 +1,20 @@
-import http from "../http-common";
+import http from "../httpCSommon";
 
 class CategoryService{
     getAll(){
-        return http.get("/category")
+        return http.get(`/category`)
     }
 
     createCategory(){
-        return http.get("/category/create")
+        return http.get(`/category/create`)
     }
 
     updateCategory(id){
-        return http.get("/category/update/${id}")
+        return http.get(`/category/update/${id}`)
     }
 
     deleteCategory(id){
-        return http.get("/category/delete/${id}")
+        return http.get(`/category/delete/${id}`)
     }
 }
 

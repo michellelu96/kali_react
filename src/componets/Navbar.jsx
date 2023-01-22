@@ -58,6 +58,11 @@ class Navbar extends Component{
                     Home
                   </Link>
                 </li>
+                <li className="nav-item">
+                    <Link to={"/product"} className="nav-link">
+                      Product
+                    </Link>
+                  </li>
     
                 {showModeratorBoard && (
                   <li className="nav-item">
@@ -93,7 +98,7 @@ class Navbar extends Component{
                   </li>
                   <li className="nav-item">
                     <a href="/login" className="nav-link" onClick={this.logOut}>
-                      LogOut
+                      Log Out
                     </a>
                   </li>
                 </div>

@@ -2,7 +2,6 @@ import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, BrowserRouter} from "react-router-dom";
 import React, { Component } from "react";
-const axios = require('axios');
 
 import EventBus from "./common/EventBus";
 import AuthService from './services/authService';
@@ -13,7 +12,8 @@ import BoardModerator from './componets/BoardMod';
 import BoardAdmin from './componets/BoardAdmin';
 import Home from './componets/Home';
 import Profile from './componets/Profile';
-import Navbar from './componets/Navbar';
+import Product from './componets/Products';
+import Cart from './componets/Cart';
 
 
 class App extends Component {
@@ -73,6 +73,8 @@ class App extends Component {
               <Route path="/user" element={<BoardUser />} />
               <Route path="/mod" element={<BoardModerator />} />
               <Route path="/admin" element={<BoardAdmin />} /> 
+              <Route path="/product" element={<Product/>}/>
+              <Route path="/cart" element={<Cart/>}/>
             </Routes>
         </div>
     );

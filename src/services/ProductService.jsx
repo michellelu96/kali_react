@@ -1,24 +1,24 @@
-import http from "../http-common";
+import http from "../httpCommon";
 
 class ProductService{
     getAll(){
-        return http.get("/products");
+        return http.get("/product");
     }
 
     getOne(id){
-        return http.get('/products/${id}')
+        return http.get(`/product/${id}`)
     }
 
     create(data){
-        return http.post("/products/add",data)
+        return http.post(`/product/add`,data)
     }
 
     update(id, data){
-        return http.post('/products/update/${id}',data);
+        return http.post(`/product/update/${id}`,data);
     }
 
     delete(id){
-        return http.delete('/products/delete/${id}');
+        return http.delete(`/product/delete/${id}`);
     }
 
 
