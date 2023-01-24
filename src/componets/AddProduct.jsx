@@ -61,3 +61,68 @@ const vImage = value =>{
         )
     }
 }
+
+export default class AddProduct extends Component{
+    constructor(props){
+        super(props);
+        this.handleAddProduct = this.handleAddProduct.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeCategory = this.onChangeCategory.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+
+        this.state ={
+            name:"",
+            category:"",
+            price: 0.0,
+            description: "",
+            image:"",
+            successful: false,
+            message:""
+        }
+    }
+
+    onChangeName(e){
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    onChangeCategory(e){
+        this.setState({
+            category: e.target.value
+        })
+    }
+
+    onChangePrice(e){
+        this.setState({
+            price: e.target.value
+        })
+    }
+
+    onChangeDescription(e){
+        this.setState({
+            description: e.target.value
+        })
+    }
+
+    onChangeImage(e){
+        this.setState({
+            image: e.target.value
+        })
+    }
+
+    handleAddProduct(e){
+        e.preventDefault();
+
+        this.setState({
+            message:"",
+            successful:false
+        });
+
+        this.form.validateAll();
+
+        
+    }
+}
