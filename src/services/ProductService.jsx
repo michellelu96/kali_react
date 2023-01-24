@@ -9,10 +9,6 @@ class ProductService{
         return http.get(`/product/${id}`)
     }
 
-    create(data){
-        return http.post(`/product/add`,data)
-    }
-
     update(id, data){
         return http.post(`/product/update/${id}`,data);
     }
@@ -21,6 +17,15 @@ class ProductService{
         return http.delete(`/product/delete/${id}`);
     }
 
+    create(name,image,price,description,category){
+        return http.post("/product/add", {
+            name,
+            image,
+            price,
+            description,
+            category
+        });
+    }
 
 }
 

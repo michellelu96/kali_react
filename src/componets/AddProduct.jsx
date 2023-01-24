@@ -1,3 +1,5 @@
+import CategoryService from "../services/categoryService"
+import ProductService from "../services/ProductService"
 
 
 
@@ -81,7 +83,12 @@ export default class AddProduct extends Component{
             successful: false,
             message:""
         }
+
+        let categories = CategoryService.getCategories();
+        let options = [];
+        for(let i = 0; i < categories.length; i++) options.push(categories(i));
     }
+    
 
     onChangeName(e){
         this.setState({
@@ -123,6 +130,120 @@ export default class AddProduct extends Component{
 
         this.form.validateAll();
 
+        if(this.checkBtn.context._errors.length === 0){
+            ProductService.create(
+                this.state.name,
+                this.state.image,
+                this.state.price,
+                this.state.description,
+                this.state.category
+            ).then(
+                response =>{
+                    this.setState({
+                        message:response.data.message,
+                        successful:true
+                    })
+                }, error =>{
+                    const resMessage = 
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+
+                    this.setState({
+                        loading:false,
+                        message:resMessage
+                    });
+                }
+            )
+        }
         
+    }
+
+    render(){
+        return(
+            <div className="col-md-12 d-flex justify-content-center">
+                <div className="card card-container" style={{width: '18rem'}}>
+                    <Form onSubmit={this.handleAddProduct} ref={c =>{this.form = c}}>
+                        {!this.state.successful &&(
+                            <div>
+                                <div className="form-group">
+                                    <label htmlFor="name"> Product Name:</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="name"
+                                        value={this.state.name}
+                                        onChange={this.onChangeName}
+                                        validations ={[required,vName]}/>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="image"> Product Image:</label>
+                                    <Input
+                                        type="text"
+                                        className="form-control"
+                                        name="image"
+                                        value={this.state.image}
+                                        onChange={this.onChangeImage}
+                                        validations ={[required,vImage]}/>
+                                </div>
+
+                                
+                                <div className="form-group">
+                                    <label htmlFor="price"> Product Price:</label>
+                                    <Input
+                                        type="number"
+                                        min="1.00"
+                                        className="form-control"
+                                        name="price"
+                                        value={this.state.price}
+                                        onChange={this.onChangePrice}
+                                        validations ={[required,vPrice]}/>
+                                </div>
+
+                                
+                                <div className="form-group">
+                                    <label htmlFor="image"> Product Description:</label>
+                                    <textarea
+                                        cols="10" 
+                                        rows="10"
+                                        className="form-control"
+                                        name="name"
+                                        value={this.state.description}
+                                        onChange={this.onChangeDescription}
+                                        validations ={[required,vDescription]}/>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="category"> Product Category:</label>
+                                    <select>
+                                        {options.map(option =>(
+                                            <option key={option} value={option}>
+                                                {option}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="price"> Product Price:</label>
+                                    <Input
+                                        type="number"
+                                        min="1.00"
+                                        className="form-control"
+                                        name="price"
+                                        value={this.state.price}
+                                        onChange={this.onChangePrice}
+                                        validations ={[required,vPrice]}/>
+                                </div>
+                            </div>
+                        )}
+                    </Form>
+                </div>
+
+            </div>
+        )
     }
 }

@@ -6,7 +6,7 @@ class CategoryService{
     }
 
     createCategory(){
-        return http.get(`/category/create`)
+        return http.post(`/category/create`)
     }
 
     updateCategory(id){
